@@ -1,168 +1,91 @@
-# Circular Linked List in C  
-### Credits 
- 
-- AP24110010192 (P Harshvardhan)
-- AP24110010198 (N D Brahmendra)
- 
+# Circular Linked List in C
+
+## Credits – Team Members
+- P Harshvardhan – AP24110010192
+- N D Brahmendra – AP24110010198
+- Yandrapragada Hari – AP24110010304
+- Mohammed Nihal – AP24110010581
+- D Manas Pranav – AP24110010596
+- Shaik Roshan – AP24110010577
+
 ---
 
 ## Overview
-This program implements a *circular singly linked list* in C.  
-A circular linked list is a list where the *last node points back to the head*, forming a loop.  
-No NULL pointer exists between nodes — the only NULL pointer is when the list is empty.
+This project implements a circular singly linked list in C and extends it with several operations including insertion, deletion, searching, finding the middle node, and a Round Robin CPU Scheduling simulation.
 
-The program supports:
-- Creating nodes (append)
-- Inserting at any position
-- Deleting the head node
-- Finding a value
-- Displaying the list
-- Printing the middle element
+A circular linked list is a data structure where the last node points back to the head, forming a loop with no NULL pointers in between nodes. A NULL pointer only appears when the list is empty.
 
-main.c demonstrates how these functions work together.
+### Supported Operations:
+- Create nodes (append)
+- Insert at any position
+- Delete (start, end, position)
+- Search for a value
+- Display the list
+- Print the middle element
+- Free memory
+- Round Robin CPU Scheduling
 
 ---
 
-## How the Code Works
-
-### 1. Global Variables
-- num1 → number of nodes in the list  
-- head → pointer to the first node  
-- last → pointer to the last node  
-
-These make list operations simpler.
+## Global Variables
+- num1 – number of nodes
+- head – pointer to the first node
+- last – pointer to the last node
 
 ---
 
 ## Functions
 
-### *create(int value)*
-Adds a new node at the *end* of the circular linked list.
+### create(int value)
+Adds a new node at the end of the list and preserves circular structure.
 
-- If the list is empty:
-  - head = last = new
-  - new->next = head
-- Otherwise:
-  - New node points to head
-  - Old last->next points to new node
-  - last becomes new node
+### insert(int value, int pos)
+Inserts a new node at the given position (start/middle/end).
 
-This keeps the list circular.
+### find(int value)
+Searches the list by traversing exactly num1 nodes.
 
----
+### middleElement()
+Uses slow and fast pointers to find the middle node.
 
-### *find(int value)*
-Searches for a number in the list.
+### delete()
+Deletes the first node (head).
 
-- Traverses exactly num1 nodes  
-- Prints the node’s memory address if found  
+### deleteEnd()
+Deletes the last node.
 
-No message if not found (your design).
+### deleteAtPosition(int pos)
+Deletes a node from a specific position.
 
----
+### display()
+Prints the list in circular format:
 
-### *middleElement()*
-Finds the middle element using:
+value -> value -> ... -> HEAD
 
 
-
-middle = num1 / 2
-
-
-
-For odd counts, it adjusts upward by one.  
-Then it traverses to that position and prints the middle value.
+### freeList()
+Frees all nodes and resets pointers.
 
 ---
 
-### *delete()*
-Deletes the *first node* (head):
-
-- If empty → prints error
-- If only one node → frees it and resets everything
-- If multiple:
-  - Moves head to next node
-  - Frees old head
-  - Fixes last->next = head
-
-Keeps the circular structure intact.
-
----
-
-### *insert(int value, int pos)*
-Inserts a new node at a given position:
-
-- *pos == 1* → insert at beginning
-- *pos == num1 + 1* → insert at end
-- Any other position → insert in the middle
-
-Handles all cases while preserving circular linking.
-
----
-
-### *display()*
-Prints the entire list using:
-
-
-
-value->value->value->HEAD
-
-`
-
-- If the list is empty → prints NULL
-- Otherwise prints the sequence followed by (HEAD)
-
-It loops exactly num1 times to avoid infinite loops.
-
----
-
-## *main.c Usage*
-
-The example in main.c:
-
-c
-create(10);
-create(20);
-create(30);
-create(40);
-create(50);
-create(60);
-insert(123, 3);
-
-delete();
-display();
-middleElement();
-find(60);
-`
-
-### Step-by-Step What Happens:
-
-1. Creates list:
-   10 -> 20 -> 30 -> 40 -> 50 -> 60 -> (HEAD)
-
-2. Inserts *123 at position 3* →
-   10 -> 20 -> 123 -> 30 -> 40 -> 50 -> 60 -> (HEAD)
-
-3. Deletes the head (10) →
-   20 -> 123 -> 30 -> 40 -> 50 -> 60 -> (HEAD)
-
-4. Displays the list.
-
-5. Prints the middle element.
-
-6. Searches for the value *60*.
+## main.c – Updated Functionalities
+The updated main.c demonstrates:
+- Creating nodes
+- Inserting at various positions
+- Deleting from start/end/position
+- Searching
+- Middle element finding
+- Displaying the list
+- Round Robin Scheduler (time quantum 4)
+- Freeing the list
 
 ---
 
 ## Compilation
 
-Compile using:
-
-bash
 gcc main.c linkedlist.c -o linkedlist
 
 
-Run:
+## Run
 
-bash
 ./linkedlist
